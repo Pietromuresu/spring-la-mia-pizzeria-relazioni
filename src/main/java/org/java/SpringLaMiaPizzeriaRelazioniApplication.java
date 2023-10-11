@@ -1,25 +1,28 @@
 package org.java;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
+import org.java.POJO.Offer;
 import org.java.POJO.Pizza;
+import org.java.interfaces.OfferRepo;
 import org.java.interfaces.PizzaRepo;
-import org.java.serv.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
+public class SpringLaMiaPizzeriaRelazioniApplication implements CommandLineRunner{
 	
 	@Autowired
 	private PizzaRepo pizzaRepo;
+	
 	@Autowired
-	private PizzaService pizzaService;
+	private OfferRepo offerRepo;
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringLaMiaPizzeriaCrudApplication.class, args);
+		SpringApplication.run(SpringLaMiaPizzeriaRelazioniApplication.class, args);
 	}
 
 	@Override
@@ -36,6 +39,17 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		pizzaRepo.save(diavola);
 		pizzaRepo.save(bufala);
 		pizzaRepo.save(marinara);
+		
+		Offer offer1 = new Offer("nuovo1", LocalDate.parse("2023-01-20"), LocalDate.parse("2023-01-30"), marinara);
+		offerRepo.save(offer1);
+		Offer offer2 = new Offer("nuovo1", LocalDate.parse("2022-10-20"), LocalDate.parse("2023-03-13"), ortolana);
+		offerRepo.save(offer2);
+		Offer offer3 = new Offer("nuovo1", LocalDate.parse("2023-08-20"), LocalDate.parse("2023-05-30"), diavola);
+		offerRepo.save(offer3);
+		Offer offer4 = new Offer("nuovo1", LocalDate.parse("2023-01-20"), LocalDate.parse("2023-11-10"), ortolana);
+		offerRepo.save(offer4);
+		Offer offer5 = new Offer("nuovo1", LocalDate.parse("2023-01-20"), LocalDate.parse("2023-01-30"), margherita);
+		offerRepo.save(offer5);
 		
 //		margherita.setName("margherita2.0");
 //		pizzaService.updatePizza(margherita);

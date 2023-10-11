@@ -16,30 +16,47 @@
 		
 		</header>
 
-	<div class="container mt-5 mb-5">			
+	<div class="container mt-5 mb-5">	
 		
-		<h1 class="text-center">
-			[[*{name.substring(0, 1).toUpperCase() + name.substring(1, name.length())}]]
-		</h1>
-		
-		<div class="d-flex justify-content-center">		
-			<img class="pm-img-show" th:alt="*{name}" th:src="*{getFullFotoUrl(fotoUrl)}">   
-		</div>
-		
-		<div class="text-center mt-5">
-			<h5>
-				<strong>					
-					Price:
-				</strong>
-				[[*{price}]] $
-			</h5>
-			<h5>
-				<strong>					
-					Description:
-				</strong>
-				[[*{description}]]
-			</h5>
-		</div>
+		<div class="row">
+			<div class="col-10">
+				<h1 class="text-center">
+					[[*{name.substring(0, 1).toUpperCase() + name.substring(1, name.length())}]]
+				</h1>
+				
+				<div class="d-flex justify-content-center">		
+					<img class="pm-img-show" th:alt="*{name}" th:src="*{getFullFotoUrl(fotoUrl)}">   
+				</div>
+				
+				<div class="text-center mt-5">
+					<h5>
+						<strong>					
+							Price:
+						</strong>
+						[[*{price}]] $
+					</h5>
+					<h5>
+						<strong>					
+							Description:
+						</strong>
+						[[*{description}]]
+					</h5>
+				</div>
+			</div>
+			
+			<div class="col-2">
+				<h2>Offers</h2>
+				<h6 th:if="*{offers.size() < 1}">Non ci sono offerte..</h6>
+				
+				<ul th:if="*{offers.size() > 0}" class="mt-5">
+					<li th:each="offer : *{offers}">
+						[[${offer.title}]] - 
+						<a href="/pizza/2">Edit</a>
+					</li>
+				</ul>
+			</div>
+				
+		</div>		
 		
 	</div>
 

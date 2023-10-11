@@ -50,8 +50,8 @@ public class Pizza {
 		setId(id);
 		setName(name);
 		setPrice(price);
-	}
 
+	}
 
 	public Long getId() {
 		return id;
@@ -102,6 +102,13 @@ public class Pizza {
 		this.price = price;
 	}
 	
+	
+	public List<Offer> getOffers() {
+		return offers;
+	}
+	public void setOffers(List<Offer> offers) {
+		this.offers = offers;
+	}
 	
 	@Override
 	public String toString() {
