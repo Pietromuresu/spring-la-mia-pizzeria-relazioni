@@ -1,6 +1,7 @@
 package org.java.POJO;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -9,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
@@ -36,6 +38,9 @@ public class Pizza {
 	@Min(value=1, message= "La pizza non può essere gratis" )
 	private BigDecimal price;
 	
+	
+	@OneToMany(mappedBy= "pizza")
+	private List<Offer> offers;
 	
 	public Pizza() {}
 	public Pizza(String name, String description, String fotoUrl, BigDecimal price) {
