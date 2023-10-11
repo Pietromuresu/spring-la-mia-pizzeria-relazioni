@@ -1,4 +1,4 @@
-# spring-la-mia-pizzeria-crud
+# spring-la-mia-pizzeria-relazioni
 
 ## Todo
 ### Giorno 1 - index, layout, spring jpa
