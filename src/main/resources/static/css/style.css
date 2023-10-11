@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+.pm-card{
+
+	height: 350px;
+	max-width: 270px;
+	overflow: hidden;
+	padding-bottom: 10px;
+}
+
+.pm-card>img{
+	height: 250px;
+}
+
+.pm-card>card-body{
+	height: 70px;
+}
+
+.pm-pizza-desc{
+	max-height: 50px;
+	font-size: 13px;
+}
+
+.pm-img-container{
+	height: 2500px !important;
+	overflow: hidden;
+}
+
+.pm-img-show{
+	width: 400px ;
+}
+
+.pm-create-form{
+	width: 600px;
+	margin: 40px auto;
+}
+
+.pm-delete-btn{
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: none;
+}
+
+.pm-card:hover .pm-delete-btn{
+	display: block;
+}
+

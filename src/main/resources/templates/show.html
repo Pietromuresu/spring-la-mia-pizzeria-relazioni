@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!--/* BOOTSTRAP */-->
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css} "/>
+
+<!--/* STYLE */-->
+<link rel="stylesheet" th:href="@{/css/style.css}" >
+
+<title>Insert title here</title>
+</head>
+<body th:object="${pizza}">
+	
+		<header th:replace="~{frags/header :: header()}">
+		
+		</header>
+
+	<div class="container mt-5 mb-5">			
+		
+		<h1 class="text-center">
+			[[*{name.substring(0, 1).toUpperCase() + name.substring(1, name.length())}]]
+		</h1>
+		
+		<div class="d-flex justify-content-center">		
+			<img class="pm-img-show" th:alt="*{name}" th:src="*{getFullFotoUrl(fotoUrl)}">   
+		</div>
+		
+		<div class="text-center mt-5">
+			<h5>
+				<strong>					
+					Price:
+				</strong>
+				[[*{price}]] $
+			</h5>
+			<h5>
+				<strong>					
+					Description:
+				</strong>
+				[[*{description}]]
+			</h5>
+		</div>
+		
+	</div>
+
+</body>
+</html>
