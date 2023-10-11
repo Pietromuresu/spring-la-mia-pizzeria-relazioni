@@ -1,6 +1,7 @@
 package org.java.POJO;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,16 +9,28 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
+@Table(name="offer")
 public class Offer {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
+	
+//	@NotNull(message="E' necessario inserire almeno la data di inizio")
 	private LocalDate startDate;
+
+	private String htmlStartDate;
+	private String htmlEndDate;
+	
+	
 	private LocalDate endDate;
+	
+//	@NotNull(message="E' necessario inserire il titolo")
 	private String title;
 	
 	@ManyToOne
@@ -60,6 +73,25 @@ public class Offer {
 	}
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
+	}
+	
+	public String getHtmlStartDate() {
+		return startDate == null
+				? null
+				: startDate.format(DateTimeFormatter.ofPattern("YYYY-MM-dd"));
+	}
+	
+	public String getHtmlEndDate() {
+		return endDate == null
+				? null
+				: endDate.format(DateTimeFormatter.ofPattern("YYYY-MM-dd"));
+	}
+	
+	public void setHtmlEndDate(String date) {
+		setEndDate(LocalDate.parse(date));
+	}
+	public void setHtmlStartDate(String date) {
+		setStartDate(LocalDate.parse(date));
 	}
 	
 	

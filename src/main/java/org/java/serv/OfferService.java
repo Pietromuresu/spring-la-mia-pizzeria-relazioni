@@ -26,5 +26,15 @@ public class OfferService {
 		
 		return offerRepo.findById(id).get();
 	}
+	
+	public void updatePizza(Offer offer) {
+		
+		Long id = offer.getId();
+		Offer offerToUpdate = offerRepo.findById(id).get();
+
+	
+		
+		offerRepo.save(offerToUpdate);
+	}
 
 }
