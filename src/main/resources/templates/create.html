@@ -109,6 +109,30 @@
 				</ul>
 			</div>
 		</div>
+		<div class="form-group mt-4">
+			<label for="ingredients">
+				<strong>
+					Ingredients
+				</Strong>
+			</label>
+			<ul>
+				<li 
+				  th:each="ingredient : ${allIngredients}"
+				>					
+					<input 
+						class="checkbox-control"
+						type="checkBox" 
+						th:id="| ingredient-${ingredient.id} |" 
+						name="| ingredient-${ingredient.id} |" 
+						th:field="*{ingredients}"
+						th:checked="${pizza.hasIngredient(ingredient)}"
+					>
+					<label th:for="| ingredient-${ingredient.id} |">
+						[[${ingredient.name}]]	
+					</label>	
+				</li>				
+			</ul>
+		</div>
 		
 		<button type="submit" class=" btn btn-secondary mt-3 ">
 			Save

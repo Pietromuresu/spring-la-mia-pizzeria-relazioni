@@ -2,7 +2,9 @@ package org.java.controllers;
 
 import java.util.List;
 
+import org.java.POJO.Ingredient;
 import org.java.POJO.Pizza;
+import org.java.serv.IngredientService;
 import org.java.serv.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,9 @@ public class MainController {
 	@Autowired
 	private PizzaService pizzaServ;
 	
+	@Autowired
+	private IngredientService ingredientServ;
+	
 	@GetMapping
 	public String index(Model model) {
 		
@@ -37,8 +42,9 @@ public class MainController {
 	@GetMapping("/create")
 	public String createForm(Model model) {
 		
-		
+		List<Ingredient> ingredients = ingredientServ.findAll();
 		model.addAttribute("pizza", new Pizza());
+		model.addAttribute("allIngredients", ingredients);
 		
 		return "create";
 	}
@@ -55,8 +61,10 @@ public class MainController {
 	@GetMapping("/update/{id}")
 	public String updatePizza(@PathVariable Long id , Model model) {
 		
-		
+		List<Ingredient> ingredients = ingredientServ.findAll();
 		Pizza pizzaToUpdate = pizzaServ.findById(id);
+
+		model.addAttribute("allIngredients", ingredients);
 		model.addAttribute("pizza", pizzaToUpdate);
 		
 		return "create";

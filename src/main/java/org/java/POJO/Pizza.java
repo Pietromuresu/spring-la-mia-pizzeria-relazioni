@@ -21,6 +21,7 @@ import jakarta.validation.constraints.NotNull;
 @Table(name="pizza")
 public class Pizza {
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id; 
@@ -125,6 +126,18 @@ public class Pizza {
 	}
 	public void setIngredients(List<Ingredient> ingredients) {
 		this.ingredients = ingredients;
+	}
+	
+	public boolean hasIngredient(Ingredient ingredient) {
+			
+		if (getIngredients() == null) return false;
+				
+			for ( Ingredient ing : getIngredients()) 
+				if (ingredient.getId() == ing.getId())
+					return true;
+			
+		
+		return false;
 	}
 	
 	@Override
