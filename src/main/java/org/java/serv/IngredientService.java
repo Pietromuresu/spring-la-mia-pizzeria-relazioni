@@ -17,6 +17,9 @@ public class IngredientService {
 	public void save(Ingredient ingredient) {
 		ingredientRepo.save(ingredient);
 	}
+	public void deleteById(Long id) {
+		ingredientRepo.deleteById(id);
+	}
 	
 	public List<Ingredient> findAll() {
 		return ingredientRepo.findAll();

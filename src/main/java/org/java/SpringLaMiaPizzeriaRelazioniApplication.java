@@ -44,11 +44,11 @@ public class SpringLaMiaPizzeriaRelazioniApplication implements CommandLineRunne
 		ingredientRepo.save(patate);
 		
 		
-		Pizza margherita = new Pizza("margherita", "pom., mozz., basilico", "margherita.webp", new BigDecimal(4.5), pomodoro, mozzarella);
-		Pizza ortolana = new Pizza("ortolana", "pom., mozz., verdure grigliate miste", "ortolana.jpeg", new BigDecimal(4.5), pomodoro, mozzarella);
-		Pizza diavola = new Pizza("diavola", "pom., mozz., salsiccia secca piccante, olio piccante", "diavola.jpeg", new BigDecimal(7.5), pomodoro, origano);
-		Pizza bufala = new Pizza("bufala", "pom., mozzarella di bufala, basilico", "bufala.jpeg", new BigDecimal(9), pomodoro, mozzarella);
-		Pizza marinara = new Pizza("marinara", "pom., aglio, origano, acciughe", "marinara.jpeg", new BigDecimal(7), pomodoro, patate);
+		Pizza margherita = new Pizza("margherita", "classica margherita", "margherita.webp", new BigDecimal(4.5), pomodoro, mozzarella);
+		Pizza ortolana = new Pizza("ortolana", "classica ortolana", "ortolana.jpeg", new BigDecimal(4.5), pomodoro, mozzarella);
+		Pizza diavola = new Pizza("diavola", "classica diavola", "diavola.jpeg", new BigDecimal(7.5), pomodoro, origano);
+		Pizza bufala = new Pizza("bufala", "classica fakenews", "bufala.jpeg", new BigDecimal(9), pomodoro, mozzarella);
+		Pizza marinara = new Pizza("marinara", "Classica marinara", "marinara.jpeg", new BigDecimal(7), pomodoro, patate);
 	
 		pizzaRepo.save(margherita);
 		pizzaRepo.save(ortolana);

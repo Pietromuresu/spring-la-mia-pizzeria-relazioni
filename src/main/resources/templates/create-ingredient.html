@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>La mia pizzaria - Create Ingredient</title>
+
+<!--/* BOOTSTRAP */-->
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css} "/>
+
+<!--/* STYLE */-->	
+<link rel="stylesheet" th:href="@{/css/style.css}" >
+
+</head>
+<body>
+	<header th:replace="~{frags/header :: header()}">
+		
+	</header>
+	
+	<div class="container mt-5">
+		<div class="w-50 mx-auto">
+			<h1>All ingredients</h1>
+			<ul>
+				<li th:each="ingredient : ${ingredients}" class="my-2">
+					[[${ingredient.name}]]
+					<span>
+						<form 
+						  class="d-inline"
+						  th:action="| /ingredients/delete/${ingredient.id} |" 
+						  method="POST"
+						>										
+								<input type="submit" value="delete" class="btn btn-danger btn-sm">
+						</form>
+					</span>
+						
+				</li>
+				<li class="">
+					<form
+					  action="/ingredients/add"
+					  method="post"
+					  class="w-25 d-flex"
+					  th:object="${ingredientToAdd}"
+					>						
+						<input 
+						  class="form-control h-75 mt-1"	
+						  type="text"
+						  placeholder="Add new"
+						  th:field="*{name}"
+						>
+						
+						<button class="btn btn-secondary btn-sm  ">
+							Save
+						</button>
+					</form>
+				</li>
+			</ul>
+		</div>		
+	</div>
+</body>
+</html>

@@ -27,22 +27,42 @@
 				<div class="d-flex justify-content-center">		
 					<img class="pm-img-show" th:alt="*{name}" th:src="*{getFullFotoUrl(fotoUrl)}">   
 				</div>
-				
-				<div class="text-center mt-5">
-					<h5>
+				<div class="row mt-5">						
+					<div class=" col-8 text-center ">
+						<h5>
+							<strong>					
+								Price:
+							</strong>
+							[[*{price}]] $
+						</h5>
+						<h5>
+							<strong>					
+								Description:
+							</strong>
+							[[*{description}]]
+						</h5>
+						
+						
+					</div>
+					
+					<div class="col-4 ">	
 						<strong>					
-							Price:
+							Ingredients:
 						</strong>
-						[[*{price}]] $
-					</h5>
-					<h5>
-						<strong>					
-							Description:
-						</strong>
-						[[*{description}]]
-					</h5>
+		
+						<ul>
+							<li 
+							  th:each="ingredient : *{ingredients}"
+							>						
+								[[${ingredient.name}]]
+							</li>							
+						</ul>
+					</div>
 				</div>
+			
+
 			</div>
+			
 			
 			<div class="col-3">
 				<h2 class="d-inline">Offers</h2>
