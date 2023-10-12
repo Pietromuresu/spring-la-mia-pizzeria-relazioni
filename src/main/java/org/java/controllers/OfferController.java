@@ -33,22 +33,9 @@ public class OfferController {
 						@PathVariable("pizza_id") int id
 						
 						) {
-		Pizza pizza = pizzaServ.findById(Long.valueOf(id));
-		
-		
-		if (bindingResult.hasErrors()) {
-
-			return "create-offer";
-		} else {
-			
-			offer.setPizza(pizza);
-			offerServ.save(offer);
-		}		
-		
-		return "redirect:/pizza/" + id;
+		return saveOffer(model, offer, bindingResult, id);
 		
 	}
-	
 	@GetMapping("/create/{id}")
 	public String createForm(Model model, @PathVariable Long id) {
 		
@@ -69,7 +56,6 @@ public class OfferController {
 		return saveOffer(model, offer, bindingResult, id);
 		
 	}
-	
 	@GetMapping("/update/{pizza_id}/{id}")
 	public String updateForm(Model model, 
 			@PathVariable("id") Long id) {
@@ -79,6 +65,7 @@ public class OfferController {
 		
 		return "create-offer";
 	}
+	
 	
 	public String saveOffer(Model model, 
 			@ModelAttribute("offer") @Valid Offer offer, 

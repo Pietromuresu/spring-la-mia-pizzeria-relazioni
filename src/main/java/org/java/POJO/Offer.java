@@ -30,7 +30,6 @@ public class Offer {
 	private LocalDate endDate;
 
 	
-	
 	@NotNull(message="E' necessario inserire il titolo")
 	@Length(min = 3, max=255, message= "il titolo deve avere un minimo di 3 caratteri ")
 	private String title;
