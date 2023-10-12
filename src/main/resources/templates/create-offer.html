@@ -10,11 +10,12 @@
 <!--/* STYLE */-->
 <link rel="stylesheet" th:href="@{/css/style.css}" >
 </head>
-<body th:object="${offer}">
+<body>
 	<div class="container w-50 mt-5">
 	<h1> Crea la nuova offerta</h1>
 		
-		<form method="POST" >
+		<form method="POST"
+		 th:object="${offer}" >
 			
 			<input type="number" name="id" th:field="*{id}" hidden>
 			<label for="title" class="mt-3"> 
@@ -30,6 +31,11 @@
 				placeholder="Es. BlackFriday -50%..."
 				th:field="*{title}"
 			>
+			<div th:if="${#fields.hasErrors('title')}">
+				<ul>
+				   <li th:each="err : ${#fields.errors('title')}" th:text="${err}" class="text-danger"></li>
+				</ul>
+			</div>
 			<div class="row">		
 				<div class="col">	
 					<label for="startDate" class="mt-3"> 
@@ -64,6 +70,11 @@
 						name="endDate" 
 						th:field="*{htmlEndDate}"
 					>
+					<div th:if="${#fields.hasErrors('endDate')}">
+						<ul>
+						   <li th:each="err : ${#fields.errors('endDate')}" th:text="${err}" class="text-danger"></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 			

@@ -28,20 +28,22 @@ public class OfferController {
 	
 	@PostMapping("/create/{pizza_id}")
 	public String store( Model model, 
-						@Valid @ModelAttribute Offer offer,
-						@PathVariable("pizza_id") int id, 
-						BindingResult bindingResult
+						@ModelAttribute("offer") @Valid Offer offer, 
+						BindingResult bindingResult,
+						@PathVariable("pizza_id") int id
+						
 						) {
-		
 		Pizza pizza = pizzaServ.findById(Long.valueOf(id));
-		offer.setPizza(pizza);
 		
-		if(bindingResult.hasErrors()) {
+		
+		if (bindingResult.hasErrors()) {
+
 			return "create-offer";
-		}
-		
-		offerServ.save(offer);
-		
+		} else {
+			
+			offer.setPizza(pizza);
+			offerServ.save(offer);
+		}		
 		
 		return "redirect:/pizza/" + id;
 		
@@ -59,34 +61,43 @@ public class OfferController {
 	
 	@PostMapping("/update/{pizza_id}/{id}")
 	public String updateoffer( Model model, 
-			@Valid @ModelAttribute Offer offer,
-			@PathVariable("pizza_id") int id, 
-			BindingResult bindingResult
+			@ModelAttribute("offer") @Valid Offer offer, 
+			BindingResult bindingResult,
+			@PathVariable("pizza_id") int id
 			) {
 		
-		Pizza pizza = pizzaServ.findById(Long.valueOf(id));
-		offer.setPizza(pizza);
-		
-		if(bindingResult.hasErrors()) {
-			return "create-offer";
-		}else {
-		
-			offerServ.save(offer);
-		}
-		
-		
-		return "redirect:/pizza/" + id;
+		return saveOffer(model, offer, bindingResult, id);
 		
 	}
 	
 	@GetMapping("/update/{pizza_id}/{id}")
 	public String updateForm(Model model, 
-			@PathVariable Long id) {
+			@PathVariable("id") Long id) {
 		
 		Offer offerToUpdate = offerServ.findById(id);
 		model.addAttribute("offer", offerToUpdate);
 		
 		return "create-offer";
+	}
+	
+	public String saveOffer(Model model, 
+			@ModelAttribute("offer") @Valid Offer offer, 
+			BindingResult bindingResult,
+			@PathVariable("pizza_id") int id) {
+		
+		Pizza pizza = pizzaServ.findById(Long.valueOf(id));
+		
+		
+		if (bindingResult.hasErrors()) {
+
+			return "create-offer";
+		} else {
+			
+			offer.setPizza(pizza);
+			offerServ.save(offer);
+		}		
+		
+		return "redirect:/pizza/" + id;
 	}
 	
 }

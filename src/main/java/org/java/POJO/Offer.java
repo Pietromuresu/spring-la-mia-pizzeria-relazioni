@@ -3,6 +3,8 @@ package org.java.POJO;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import org.hibernate.validator.constraints.Length;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,16 +23,16 @@ public class Offer {
 	private Long id;
 	
 	
-//	@NotNull(message="E' necessario inserire almeno la data di inizio")
+	@NotNull(message="E' necessario inserire la data di inizio")
 	private LocalDate startDate;
 
-	private String htmlStartDate;
-	private String htmlEndDate;
-	
-	
+	@NotNull(message="E' necessario inserire la data di fine")
 	private LocalDate endDate;
+
 	
-//	@NotNull(message="E' necessario inserire il titolo")
+	
+	@NotNull(message="E' necessario inserire il titolo")
+	@Length(min = 3, max=255, message= "il titolo deve avere un minimo di 3 caratteri ")
 	private String title;
 	
 	@ManyToOne
