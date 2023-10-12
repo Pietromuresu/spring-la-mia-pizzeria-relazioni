@@ -3,8 +3,10 @@ package org.java;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import org.java.POJO.Ingredient;
 import org.java.POJO.Offer;
 import org.java.POJO.Pizza;
+import org.java.interfaces.IngredientRepo;
 import org.java.interfaces.OfferRepo;
 import org.java.interfaces.PizzaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class SpringLaMiaPizzeriaRelazioniApplication implements CommandLineRunne
 	@Autowired
 	private OfferRepo offerRepo;
 
+	@Autowired
+	private IngredientRepo ingredientRepo;
+
 	public static void main(String[] args) {
 		SpringApplication.run(SpringLaMiaPizzeriaRelazioniApplication.class, args);
 	}
@@ -28,11 +33,22 @@ public class SpringLaMiaPizzeriaRelazioniApplication implements CommandLineRunne
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Pizza margherita = new Pizza("margherita", "pom., mozz., basilico", "margherita.webp", new BigDecimal(4.5));
-		Pizza ortolana = new Pizza("ortolana", "pom., mozz., verdure grigliate miste", "ortolana.jpeg", new BigDecimal(4.5));
-		Pizza diavola = new Pizza("diavola", "pom., mozz., salsiccia secca piccante, olio piccante", "diavola.jpeg", new BigDecimal(7.5));
-		Pizza bufala = new Pizza("bufala", "pom., mozzarella di bufala, basilico", "bufala.jpeg", new BigDecimal(9));
-		Pizza marinara = new Pizza("marinara", "pom., aglio, origano, acciughe", "marinara.jpeg", new BigDecimal(7));
+		Ingredient pomodoro = new Ingredient("pomodoro");
+		Ingredient mozzarella = new Ingredient("mozzarella");
+		Ingredient origano = new Ingredient("origano");
+		Ingredient patate = new Ingredient("patate");
+		
+		ingredientRepo.save(pomodoro);
+		ingredientRepo.save(mozzarella);
+		ingredientRepo.save(origano);
+		ingredientRepo.save(patate);
+		
+		
+		Pizza margherita = new Pizza("margherita", "pom., mozz., basilico", "margherita.webp", new BigDecimal(4.5), pomodoro, mozzarella);
+		Pizza ortolana = new Pizza("ortolana", "pom., mozz., verdure grigliate miste", "ortolana.jpeg", new BigDecimal(4.5), pomodoro, mozzarella);
+		Pizza diavola = new Pizza("diavola", "pom., mozz., salsiccia secca piccante, olio piccante", "diavola.jpeg", new BigDecimal(7.5), pomodoro, origano);
+		Pizza bufala = new Pizza("bufala", "pom., mozzarella di bufala, basilico", "bufala.jpeg", new BigDecimal(9), pomodoro, mozzarella);
+		Pizza marinara = new Pizza("marinara", "pom., aglio, origano, acciughe", "marinara.jpeg", new BigDecimal(7), pomodoro, patate);
 	
 		pizzaRepo.save(margherita);
 		pizzaRepo.save(ortolana);
