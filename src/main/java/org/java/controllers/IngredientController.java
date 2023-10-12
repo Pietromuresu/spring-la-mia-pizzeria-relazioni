@@ -3,7 +3,6 @@ package org.java.controllers;
 import java.util.List;
 
 import org.java.POJO.Ingredient;
-import org.java.POJO.Offer;
 import org.java.POJO.Pizza;
 import org.java.serv.IngredientService;
 import org.java.serv.PizzaService;

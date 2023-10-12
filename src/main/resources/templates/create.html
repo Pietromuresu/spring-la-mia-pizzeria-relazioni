@@ -121,9 +121,10 @@
 				>					
 					<input 
 						class="checkbox-control"
-						type="checkBox" 
+						type="checkbox" 
 						th:id="| ingredient-${ingredient.id} |" 
 						name="| ingredient-${ingredient.id} |" 
+						th:value="${ingredient.id}"
 						th:field="*{ingredients}"
 						th:checked="${pizza.hasIngredient(ingredient)}"
 					>
