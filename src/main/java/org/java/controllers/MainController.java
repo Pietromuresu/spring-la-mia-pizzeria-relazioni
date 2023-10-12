@@ -127,7 +127,9 @@ public class MainController {
 			BindingResult bindingResult) {
 		
 		if (bindingResult.hasErrors()) {
+			List<Ingredient> ingredients = ingredientServ.findAll();
 
+			model.addAttribute("allIngredients", ingredients);
 			return "create";
 		} else {
 			
