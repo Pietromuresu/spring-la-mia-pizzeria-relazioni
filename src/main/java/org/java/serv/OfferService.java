@@ -26,6 +26,10 @@ public class OfferService {
 		
 		return offerRepo.findById(id).get();
 	}
+	public void deleteById(Long id) {
+		
+		offerRepo.deleteById(id);
+	}
 	
 	public void updatePizza(Offer offer) {
 		

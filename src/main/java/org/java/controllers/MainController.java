@@ -3,8 +3,10 @@ package org.java.controllers;
 import java.util.List;
 
 import org.java.POJO.Ingredient;
+import org.java.POJO.Offer;
 import org.java.POJO.Pizza;
 import org.java.serv.IngredientService;
+import org.java.serv.OfferService;
 import org.java.serv.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,9 @@ public class MainController {
 	
 	@Autowired
 	private IngredientService ingredientServ;
+	
+	@Autowired
+	private OfferService offerServ;
 	
 	@GetMapping
 	public String index(Model model) {
@@ -93,7 +98,7 @@ public class MainController {
 			pizzas = pizzaServ.findAll();
 		}else {
 			
-			pizzas = pizzaServ.findByName(name);
+			pizzas = pizzaServ.findByName(name); 
 		}
 		
 		model.addAttribute("pizzas", pizzas);
@@ -114,6 +119,11 @@ public class MainController {
 	
 	@PostMapping("/delete/{id}")
 	public String deletePizza(@PathVariable("id") Long id) {
+		
+		Pizza pizza = pizzaServ.findById(id);
+		for(Offer offer : pizza.getOffers()) {
+			offerServ.deleteById(offer.getId());
+		}
 		
 		pizzaServ.deleteById(id);
 
